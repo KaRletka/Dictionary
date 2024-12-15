@@ -12,3 +12,6 @@ app/.env/
 # IDE settings
 .idea/
 .vscode/
+
+# .gitignore from remove repository
+.gitignore/

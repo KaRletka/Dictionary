@@ -4,9 +4,15 @@ import requests
 import urllib.parse
 import json
 import logging
+import os
+from dotenv import load_dotenv
+from pathlib import Path
 
-# DICT_PATH = 'app/resources/dictionary.sqlite'
-DICT_PATH = 'D:/member_info/Projects/Dictionary/app/resources/dictionary.sqlite'
+BASE_DIR = Path(__file__).resolve().parent.parent
+DICT_PATH = BASE_DIR / 'resources' / 'dictionary.sqlite'
+
+# Загрузить переменные из файла .env
+load_dotenv()
 
 # logging.basicConfig(
 #     filename='db_provider_log.txt',
@@ -18,7 +24,7 @@ DICT_PATH = 'D:/member_info/Projects/Dictionary/app/resources/dictionary.sqlite'
 
 def download_main_db():
     headers = {
-        'Authorization': 'OAuth y0_AgAAAABenFR4AAzOcwAAAAEZE0UeAAA9Dyor58ZKqbX_XxgwVjLIhlW3vw',
+        'Authorization': os.getenv("AUTH_KEY_YNDX"),
     }
 
     path = urllib.parse.quote('Dictionary_app/dictionary.sqlite')
@@ -36,7 +42,7 @@ def download_main_db():
 
 def upload_main_db():
     headers = {
-        'Authorization': 'OAuth y0_AgAAAABenFR4AAzOcwAAAAEZE0UeAAA9Dyor58ZKqbX_XxgwVjLIhlW3vw',
+        'Authorization': os.getenv("AUTH_KEY_YNDX"),
     }
 
     path = urllib.parse.quote('Dictionary_app/dictionary.sqlite')

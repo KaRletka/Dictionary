@@ -19,6 +19,9 @@ class StructuredCardsView(ListCards):
         if int(self.page_num.value) + direction != 0:
             self.page_num.value = str(int(self.page_num.value) + direction)
         self.change_page()
+        self.notification.content = ft.Text(f'Window size {str(self.page.width)}, {str(self.page.height)} | Page: {self.page}')
+        self.notification.open = True
+        self.page.update()
 
     def change_page(self):
         self.l_cards.controls = self.update_l_cards('pagination', size=15, page=int(self.page_num.value))

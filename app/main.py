@@ -1,5 +1,5 @@
 import flet as ft
-from logic import upload_main_db, download_main_db
+from views.logic import upload_main_db, download_main_db
 from views import InputView, RandomCardsView, StructuredCardsView, SearchView, EditView
 
 def open_app():

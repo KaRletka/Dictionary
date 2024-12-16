@@ -1,6 +1,5 @@
 import flet as ft
-from logic import get_option
-from logic import get_words
+from .logic import get_option, get_words
 
 
 class BaseView:

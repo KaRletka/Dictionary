@@ -1,5 +1,5 @@
 from .input_view import *
-from logic import edit_word, del_word
+from .logic import edit_word, del_word
 
 
 class EditView(InputView):

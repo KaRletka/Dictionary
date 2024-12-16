@@ -1,5 +1,5 @@
 from .base_view import *
-from logic import get_search
+from .logic import get_search
 
 
 class SearchView(BaseView, CreateCard):

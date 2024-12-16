@@ -12,6 +12,7 @@ class EditView(InputView):
     def show_notification(self):
         self.notification.content = ft.Text(f'Изменено слово {self.word.value}, {self.word.value}')
         self.notification.open = True
+        self.page.update()
 
     def btn_click(self):
         edit_word(

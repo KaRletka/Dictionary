@@ -22,20 +22,27 @@ def main(page: ft.Page):
         }
     )
 
+    def close_app():
+        page.window.visible = False
+        page.update()
+        upload_main_db()
+        page.window.destroy()
+
+    def plug(*args, **kwargs):
+        pass
+
     resize_func = {
         '/input': inp_view.update_size,
         '/dictionary': ran_words_view.update_size,
         '/pages': str_words_view.update_size,
         '/search': search_view.update_size,
         '/detail': edit_view.update_size,
+        '/close': plug,
     }
 
     def window_event_handler(e):
         if e.data == 'close':
-            page.window.visible = False
-            page.update()
-            upload_main_db()
-            page.window.destroy()
+            close_app()
 
     def route_change(route):
         page.views.clear()
@@ -53,6 +60,8 @@ def main(page: ft.Page):
             query_params = page.query.to_dict
             edit_view.set_info(query_params)
             page.views.append(edit_view.get_view())
+        elif page.route == '/close':
+            close_app()
         page.update()
         resized()
 

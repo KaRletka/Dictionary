@@ -29,8 +29,6 @@ class InputView(BaseView):
         self.view.controls = self.interface  # adding controls to view
         self.view.horizontal_alignment = ft.CrossAxisAlignment.CENTER
 
-        self.notification = ft.SnackBar(content=ft.Text(''), duration=3000)
-
     def update_size(self, *args):
         self.interface_wrapper.width = self.get_width_for_column()
         self.view.update()
@@ -46,6 +44,7 @@ class InputView(BaseView):
     def show_notification(self):
         self.notification.content = ft.Text(f'Добавленно слово {self.word.value}, {self.word.value}')
         self.notification.open = True
+        self.page.update()
 
     def btn_click(self):
         inp_word(

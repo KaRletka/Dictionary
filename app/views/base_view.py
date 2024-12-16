@@ -14,10 +14,14 @@ class BaseView:
                 ft.TextButton(text='Dictionary', on_click=lambda _: page.go('/dictionary')),
                 ft.TextButton(text='Search', on_click=lambda _: page.go('/search')),
                 ft.TextButton(text='Pages', on_click=lambda _: page.go('/pages')),
+                ft.TextButton(text='Exit', on_click=lambda _: page.go('/close')),
             ]
         )
+        self.notification = ft.SnackBar(content=ft.Text(''), duration=3000)
+
         self.view.appbar = self.appbar
 
+        self.page.snack_bar = self.notification
 
     def get_view(self):
         pass

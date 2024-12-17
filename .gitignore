@@ -8,6 +8,7 @@ venv/
 
 # Environment variables
 app/.env
+.\app\.env
 
 # IDE settings
 .idea/

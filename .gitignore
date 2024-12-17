@@ -3,12 +3,10 @@ __pycache__/
 *.py[cod]
 
 # Virtual environment
-.venv/
-venv/
+.venv
 
 # Environment variables
 app/.env
-.\app\.env
 
 # IDE settings
 .idea/

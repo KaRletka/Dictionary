@@ -14,6 +14,7 @@ DICT_PATH = BASE_DIR / 'resources' / 'dictionary.sqlite'
 # Загрузить переменные из файла .env
 load_dotenv()
 
+
 # logging.basicConfig(
 #     filename='db_provider_log.txt',
 #     filemode='w',
@@ -30,14 +31,18 @@ def download_main_db():
     path = urllib.parse.quote('Dictionary_app/dictionary.sqlite')
     url = f'https://cloud-api.yandex.net/v1/disk/resources/download?path={path}'
 
-    response = requests.get(url=url, headers=headers)
+    try:
+        response = requests.get(url=url, headers=headers)
 
-    download_url = response.content.decode('utf-8')
-    download_url = json.loads(download_url)['href']
-    response_file = requests.get(url=download_url).content
+        download_url = response.content.decode('utf-8')
+        download_url = json.loads(download_url)['href']
+        response_file = requests.get(url=download_url).content
 
-    with open(DICT_PATH, 'wb') as file:
-        file.write(response_file)
+        with open(DICT_PATH, 'wb') as file:
+            file.write(response_file)
+
+    except requests.ConnectionError:
+        pass
 
 
 def upload_main_db():
@@ -48,14 +53,17 @@ def upload_main_db():
     path = urllib.parse.quote('Dictionary_app/dictionary.sqlite')
     url = f'https://cloud-api.yandex.net/v1/disk/resources/upload?path={path}&overwrite=true'
 
-    response = requests.get(url=url, headers=headers)
+    try:
+        response = requests.get(url=url, headers=headers)
 
-    download_url = response.content.decode('utf-8')
-    download_url = json.loads(download_url)['href']
+        download_url = json.loads(response.content.decode('utf-8'))['href']
 
-    with open(DICT_PATH, 'rb') as file:
-        files = {"file": file}
-        print(requests.put(url=download_url, files=files).status_code)
+        with open(DICT_PATH, 'rb') as file:
+            files = {"file": file}
+            requests.put(url=download_url, files=files)
+            print('Upload successful')
+    except requests.ConnectionError:
+        pass
 
 
 def get_words(mod, kwargs):
@@ -116,6 +124,7 @@ def validate_and_connect(func):  # decorator
             logging.info('Error')
         db.commit()
         db.close()
+
     return wrapper
 
 

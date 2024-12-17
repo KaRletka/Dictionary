@@ -9,8 +9,7 @@ class SearchView(BaseView, CreateCard):
         self.interface = []
 
         self.menu = ft.Column(
-            width=self.get_width_for_menu(),
-            height=self.get_height_for_menu(),
+            expand=True if self.platform != 'android' else False
         )
         self.word = ft.TextField(label="Word", on_change=lambda _: self.change_text_fields())
         self.translate = ft.TextField(label="Translate", on_change=lambda _: self.change_text_fields())
@@ -31,8 +30,9 @@ class SearchView(BaseView, CreateCard):
         self.view.horizontal_alignment = ft.CrossAxisAlignment.CENTER
 
     def update_size(self):
-        self.menu.width = self.get_width_for_menu()
-        self.menu.height = self.get_height_for_menu()
+        if self.platform != 'android':
+            self.menu.width = self.get_width_for_menu()
+            self.menu.height = self.get_height_for_menu()
         self.view.update()
 
     def btn_click(self):
@@ -65,6 +65,7 @@ class SearchView(BaseView, CreateCard):
 
     def get_height_for_menu(self):
         return self.page.height * get_option('Search_interface', self.platform, 'height', 0)
+
 
 
     def get_view(self):

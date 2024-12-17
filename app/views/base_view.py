@@ -13,7 +13,7 @@ class BaseView:
                 ft.TextButton(text='Dictionary', on_click=lambda _: page.go('/dictionary')),
                 ft.TextButton(text='Search', on_click=lambda _: page.go('/search')),
                 ft.TextButton(text='Pages', on_click=lambda _: page.go('/pages')),
-                ft.TextButton(text='Exit', on_click=lambda _: page.go('/close')),
+                ft.TextButton(text='Upload', on_click=lambda _: page.go('/upload')),
             ]
         )
         self.notification = ft.SnackBar(content=ft.Text(''), duration=3000)
@@ -72,8 +72,7 @@ class ListCards(BaseView, CreateCard):
     def create_l_cards(self, mod, **kwargs):
         l_cards = ft.ListView(
             spacing=10,
-            width=self.get_width_for_l_cards(),
-            height=self.get_height_for_l_cards(),
+            expand=True,
         )
 
         data = get_words(mod, kwargs)
@@ -96,8 +95,8 @@ class ListCards(BaseView, CreateCard):
         return new_l_cards
 
     def update_size(self, *args):
-        self.l_cards.width = self.get_width_for_l_cards()
-        self.l_cards.height = self.get_height_for_l_cards()
+        if self.platform != 'android':
+            self.l_cards.width = self.get_width_for_l_cards()
         self.view.update()
 
     def get_width_for_l_cards(self):

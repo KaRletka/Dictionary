@@ -8,7 +8,7 @@ class InputView(BaseView):
 
         self.interface = []
 
-        self.interface_wrapper = ft.Column(width=self.get_width_for_column())
+        self.interface_wrapper = ft.Column(expand=True)
         self.btns_wrapper = ft.Row()
         self.word = ft.TextField(label="Word")
         self.translate = ft.TextField(label="Translate")
@@ -30,7 +30,8 @@ class InputView(BaseView):
         self.view.horizontal_alignment = ft.CrossAxisAlignment.CENTER
 
     def update_size(self, *args):
-        self.interface_wrapper.width = self.get_width_for_column()
+        if self.platform != 'android':
+            self.interface_wrapper.width = self.get_width_for_column()
         self.view.update()
 
     def get_width_for_column(self):

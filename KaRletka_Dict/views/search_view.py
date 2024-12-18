@@ -59,7 +59,7 @@ class SearchView(BaseView, CreateCard):
     def get_width_for_menu(self):
         if self.page.width > 700:
             return self.page.width * get_option('Search_interface', self.platform, 'width',
-                                                0)  # l_cards определяется в дочерних классах
+                                                0)
         else:
             return self.page.width * get_option('Search_interface', self.platform, 'width', 1)
 

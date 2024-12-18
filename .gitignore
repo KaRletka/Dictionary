@@ -6,7 +6,7 @@ __pycache__/
 .venv
 
 # Environment variables
-app/.env
+KaRletka_Dict/.env
 
 # IDE settings
 .idea/

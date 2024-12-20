@@ -1,5 +1,5 @@
 import flet as ft
-from .logic import get_option, get_words
+from ..logic import get_option, get_words
 
 
 class BaseView:
@@ -36,9 +36,9 @@ class CreateCard:
             content=ft.Container(
                 padding=15,
                 border_radius=10,
-                bgcolor=ft.colors.GREY,
+                bgcolor=ft.Colors.GREY,
                 shadow=ft.BoxShadow(
-                    spread_radius=1, blur_radius=3, color=ft.colors.BLACK12
+                    spread_radius=1, blur_radius=3, color=ft.Colors.BLACK12
                 ),
                 on_click=lambda _: on_click(data)
             ),

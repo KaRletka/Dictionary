@@ -1,6 +1,6 @@
 import flet as ft
-from views.logic import upload_main_db, download_main_db
-from views import InputView, RandomCardsView, StructuredCardsView, SearchView, EditView
+from backend.logic import upload_main_db, download_main_db
+from backend.views import InputView, RandomCardsView, StructuredCardsView, SearchView, EditView
 
 
 def open_app():  # downloading data before launching the application

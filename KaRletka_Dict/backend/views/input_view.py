@@ -1,5 +1,5 @@
 from .base_view import *
-from .logic import inp_word
+from ..logic import inp_word
 
 
 class InputView(BaseView):

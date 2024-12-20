@@ -8,8 +8,7 @@ import os
 from dotenv import load_dotenv
 from pathlib import Path
 
-BASE_DIR = Path(__file__).resolve().parent.parent
-DICT_PATH = BASE_DIR / 'resources' / 'dictionary.sqlite'
+DICT_PATH = 'resources/dictionary.sqlite'
 
 # Загрузить переменные из файла .env
 load_dotenv()
